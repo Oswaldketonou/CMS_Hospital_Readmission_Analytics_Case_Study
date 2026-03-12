@@ -150,14 +150,23 @@ Using the model, several improvement scenarios were tested:
 
 ## 📚 7. Project Structure  
  ├── data/
+ 
  │   └── raw_cms_data.csv
+ 
  │   └── cms_clean_hospital_quality.csv
+ 
  ├── sql/
+ 
  │   └── cleaning_and_features.sql
+ 
  ├── r/
+ 
  │   └── modeling_and_evaluation.R
+ 
  ├── tableau/
+ 
  │   └── dashboard.twbx
+ 
  └── README.md
 
 ---
