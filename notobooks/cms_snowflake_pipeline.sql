@@ -76,7 +76,7 @@ NULL_IF = ('NULL', 'null', '');
 /* ------------------------------------------------------------
    2️⃣ HOSPITAL GENERAL INFORMATION
    ------------------------------------------------------------ */
-
+-- Note: for reproducibility line 80 should be run first. then run line 91 --
 CREATE OR REPLACE TABLE CMS_PROJECT.ANALYTICS.HOSPITAL_GENERAL_INFO
 USING TEMPLATE (
     SELECT ARRAY_AGG(OBJECT_CONSTRUCT(*))
@@ -96,7 +96,7 @@ MATCH_BY_COLUMN_NAME = CASE_INSENSITIVE;
 /* ------------------------------------------------------------
    3️⃣ HRRP — Hospital Readmissions Reduction Program
    ------------------------------------------------------------ */
-
+-- Note: for reproducibility line 100 should be run first. then run line 111 --
 CREATE OR REPLACE TABLE CMS_PROJECT.ANALYTICS.HRRP
 USING TEMPLATE (
     SELECT ARRAY_AGG(OBJECT_CONSTRUCT(*))
@@ -116,7 +116,7 @@ MATCH_BY_COLUMN_NAME = CASE_INSENSITIVE;
 /* ------------------------------------------------------------
    4️⃣ CAD — Complications & Deaths (Hospital)
    ------------------------------------------------------------ */
-
+-- Note: for reproducibility line 120 should be run first. then run line 131 --
 CREATE OR REPLACE TABLE CMS_PROJECT.ANALYTICS.CAD
 USING TEMPLATE (
     SELECT ARRAY_AGG(OBJECT_CONSTRUCT(*))
@@ -136,7 +136,7 @@ MATCH_BY_COLUMN_NAME = CASE_INSENSITIVE;
 /* ------------------------------------------------------------
    5️⃣ HCAHPS — Patient Experience (Hospital)
    ------------------------------------------------------------ */
-
+-- Note: for reproducibility line 140 should be run first. then run line 151 --
 CREATE OR REPLACE TABLE CMS_PROJECT.ANALYTICS.HCAHPS
 USING TEMPLATE (
     SELECT ARRAY_AGG(OBJECT_CONSTRUCT(*))
@@ -156,7 +156,7 @@ MATCH_BY_COLUMN_NAME = CASE_INSENSITIVE;
 /* ------------------------------------------------------------
    6️⃣ TEC — Timely & Effective Care (Hospital)
    ------------------------------------------------------------ */
-
+-- Note: for reproducibility line 160 should be run first. then run line 171 --
 CREATE OR REPLACE TABLE CMS_PROJECT.ANALYTICS.TEC
 USING TEMPLATE (
     SELECT ARRAY_AGG(OBJECT_CONSTRUCT(*))
