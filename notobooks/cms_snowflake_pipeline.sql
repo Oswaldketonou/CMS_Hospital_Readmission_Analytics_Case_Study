@@ -9,15 +9,6 @@
    🧩 PRE‑WORK: Downloading and Uploading CMS Files to Snowflake
    ============================================================
 
-   This section documents the setup steps performed before running
-   the Snowflake pipeline. It mirrors the workflow visible on the
-   Windows 10 desktop screenshot:
-
-   • Microsoft Edge — GitHub repository view for notebook editing
-   • Google Chrome — Snowflake workspace for data upload
-   • Windows Explorer — local folder containing CMS CSV files
-   • Windows Feature Experience Pack — system UI components
-
    ------------------------------------------------------------
    STEP 1: Download CMS Hospital Datasets
    ------------------------------------------------------------
@@ -76,7 +67,7 @@ NULL_IF = ('NULL', 'null', '');
 /* ------------------------------------------------------------
    2️⃣ HOSPITAL GENERAL INFORMATION
    ------------------------------------------------------------ */
--- Note: for reproducibility line 80 should be run first. then run line 91 --
+-- Note: for reproducibility line 71 should be run first. then run line 82 --
 CREATE OR REPLACE TABLE CMS_PROJECT.ANALYTICS.HOSPITAL_GENERAL_INFO
 USING TEMPLATE (
     SELECT ARRAY_AGG(OBJECT_CONSTRUCT(*))
@@ -96,7 +87,7 @@ MATCH_BY_COLUMN_NAME = CASE_INSENSITIVE;
 /* ------------------------------------------------------------
    3️⃣ HRRP — Hospital Readmissions Reduction Program
    ------------------------------------------------------------ */
--- Note: for reproducibility line 100 should be run first. then run line 111 --
+-- Note: for reproducibility line 91 should be run first. then run line 102 --
 CREATE OR REPLACE TABLE CMS_PROJECT.ANALYTICS.HRRP
 USING TEMPLATE (
     SELECT ARRAY_AGG(OBJECT_CONSTRUCT(*))
@@ -116,7 +107,7 @@ MATCH_BY_COLUMN_NAME = CASE_INSENSITIVE;
 /* ------------------------------------------------------------
    4️⃣ CAD — Complications & Deaths (Hospital)
    ------------------------------------------------------------ */
--- Note: for reproducibility line 120 should be run first. then run line 131 --
+-- Note: for reproducibility line 111 should be run first. then run line 122 --
 CREATE OR REPLACE TABLE CMS_PROJECT.ANALYTICS.CAD
 USING TEMPLATE (
     SELECT ARRAY_AGG(OBJECT_CONSTRUCT(*))
@@ -136,7 +127,7 @@ MATCH_BY_COLUMN_NAME = CASE_INSENSITIVE;
 /* ------------------------------------------------------------
    5️⃣ HCAHPS — Patient Experience (Hospital)
    ------------------------------------------------------------ */
--- Note: for reproducibility line 140 should be run first. then run line 151 --
+-- Note: for reproducibility line 131 should be run first. then run line 142 --
 CREATE OR REPLACE TABLE CMS_PROJECT.ANALYTICS.HCAHPS
 USING TEMPLATE (
     SELECT ARRAY_AGG(OBJECT_CONSTRUCT(*))
@@ -156,7 +147,7 @@ MATCH_BY_COLUMN_NAME = CASE_INSENSITIVE;
 /* ------------------------------------------------------------
    6️⃣ TEC — Timely & Effective Care (Hospital)
    ------------------------------------------------------------ */
--- Note: for reproducibility line 160 should be run first. then run line 171 --
+-- Note: for reproducibility line 151 should be run first. then run line 162 --
 CREATE OR REPLACE TABLE CMS_PROJECT.ANALYTICS.TEC
 USING TEMPLATE (
     SELECT ARRAY_AGG(OBJECT_CONSTRUCT(*))
