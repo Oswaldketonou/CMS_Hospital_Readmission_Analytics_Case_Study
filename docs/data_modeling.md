@@ -141,7 +141,7 @@ This is the primary table used for visualization and KPI reporting.
 ## 🧾 Full SQL Script
 
 The complete modeling script is located at:
-/notebook/snowflake_data_modeling.sql
+/sql/05_snowflake_data_modeling.sql
 
 It includes:
 
