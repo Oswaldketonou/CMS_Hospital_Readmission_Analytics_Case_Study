@@ -1,77 +1,136 @@
-# 🧊 CMS Snowflake Pipeline  
-**File:** `01_cms_snowflake_pipeline.sql`  
+# 🧊 Snowflake Ingestion Pipeline  
+**CMS Hospital Performance Project**  
 **Author:** Waldo Ketonou  
-**Project:** CMS Hospital Readmission Analytics Case Study  
 **Last Updated:** 2026‑04‑06  
 
 ---
 
-## 📘 Purpose of This Pipeline
-This pipeline builds the **raw data ingestion layer** of the CMS Hospital Analytics Warehouse in Snowflake. It automates:
+## 📘 Purpose of This Document
+This document describes the full ingestion workflow used to load all CMS hospital datasets into Snowflake before any cleaning or standardization occurs.  
+The goal of this step is to ensure:
 
-- Creating the project database and schemas  
-- Defining a unified CSV file format  
-- Dynamically inferring schemas for all CMS datasets  
-- Loading raw CSV files into Snowflake tables  
-- Validating row counts across all datasets  
+- A reproducible, automated ingestion pipeline  
+- Consistent handling of all CMS CSV files  
+- Dynamic schema inference using `INFER_SCHEMA`  
+- Accurate loading into the `ANALYTICS` layer  
+- A clean separation between raw ingestion and downstream transformation  
 
-This is the **foundation** for the STAGING and CORE layers that follow.
+All ingestion steps occur in the **ANALYTICS** layer of the Snowflake warehouse.
 
 ---
 
-## 🧩 Overview of the Workflow
+## 🏗️ Workflow Overview
 
-The pipeline consists of seven major steps:
+The ingestion process follows a structured, multi‑step pipeline:
 
 1. **Download CMS datasets**  
-2. **Upload CSV files to Snowflake stage**  
-3. **Verify stage contents**  
-4. **Create database, schema, and file format**  
-5. **Infer schema and load each dataset**  
-6. **Apply consistent ingestion logic across all files**  
-7. **Validate row counts**  
+2. **Upload raw CSV files to Snowflake stage**  
+3. **Create the project database and schemas**  
+4. **Create a unified CSV file format**  
+5. **Infer schemas dynamically using `INFER_SCHEMA`**  
+6. **Create tables using Snowflake templates**  
+7. **Load data using `COPY INTO`**  
+8. **Validate row counts for all datasets**
 
-Each dataset is loaded using the same reproducible pattern:
-CREATE TABLE USING TEMPLATE(INFER_SCHEMA) COPY INTO table FROM @stage MATCH_BY_COLUMN_NAME=CASE_INSENSITIVE
-
-This ensures the pipeline adapts to CMS schema changes automatically.
+Each table is created using Snowflake’s dynamic schema inference to ensure reproducibility and adaptability to CMS schema changes.
 
 ---
 
-## 📥 1. Download CMS Hospital Datasets
+## 🧹 Ingestion Rules Applied
 
-Source:  
-https://data.cms.gov/provider-data/dataset/hospital
+Across all datasets, the following ingestion rules were applied:
 
-Files used in this project:
+### **1. Unified File Format**
+- A single CSV file format (`CMS_CSV_FORMAT`) was created  
+- Ensures consistent parsing across all datasets  
+- Handles headers, delimiters, and null values uniformly  
 
-- `Hospital_General_Information.csv`  
-- `FY_2026_Hospital_Readmissions_Reduction_Program_Hospital.csv`  
-- `Complications_and_Deaths-Hospital.csv`  
-- `HCAHPS-Hospital.csv`  
-- `Timely_and_Effective_Care-Hospital.csv`
+### **2. Dynamic Schema Inference**
+- `INFER_SCHEMA` used to detect column names and data types  
+- Eliminates manual schema creation  
+- Automatically adapts to CMS file updates  
 
-Save all files locally:
-C:\CMS_Hospital_Readmission_Analytics_Case_Study\data\
+### **3. Template‑Based Table Creation**
+- Tables created using `USING TEMPLATE`  
+- Guarantees table structure matches the uploaded file  
+- Ensures ingestion remains resilient to schema drift  
+
+### **4. Case‑Insensitive Column Matching**
+- `MATCH_BY_COLUMN_NAME = CASE_INSENSITIVE`  
+- Prevents load failures due to casing differences  
+- Ensures reliable column alignment during ingestion  
 
 ---
 
-## 📤 2. Upload Files to Snowflake Stage
+## 📂 Tables Created in the ANALYTICS Layer
 
-In Snowflake:
+The following raw tables were created in the `CMS_PROJECT.ANALYTICS` schema:
 
-1. Navigate to:  
-   `CMS_PROJECT → ANALYTICS → CMS_STAGE`
-2. Click **+ → Upload Files**
-3. Select all five CSVs
-4. Confirm upload:
+| Dataset | Table Name | Description |
+|--------|------------|-------------|
+| Hospital General Info | `HOSPITAL_GENERAL_INFO` | Core facility attributes |
+| HRRP | `HRRP` | Readmissions metrics |
+| CAD | `CAD` | Complications & mortality |
+| HCAHPS | `HCAHPS` | Patient experience survey |
+| TEC | `TEC` | Timeliness & effectiveness of care |
 
-```sql
-LIST @CMS_PROJECT.ANALYTICS.CMS_STAGE;
-Expected contents:
-cms_stage/Hospital_General_Information.csv
-cms_stage/FY_2026_Hospital_Readmissions_Reduction_Program_Hospital.csv
-cms_stage/Complications_and_Deaths-Hospital.csv
-cms_stage/HCAHPS-Hospital.csv
-cms_stage/Timely_and_Effective_Care-Hospital.csv
+Each table is a direct ingestion of the corresponding CMS CSV file.
 
+---
+
+## 🧾 Full SQL Script
+
+The complete SQL script used to perform ingestion is located at:  
+/sql/01_cms_snowflake_pipeline.sql
+
+This script includes:
+
+- Database and schema creation  
+- Stage creation  
+- CSV file format creation  
+- Schema inference logic  
+- Template‑based table creation  
+- COPY INTO load commands  
+- Row count validation queries  
+
+---
+
+## 🧪 Validation Summary
+
+After ingestion, the following checks were performed:
+
+- All five tables successfully created  
+- All row counts matched the raw CSV files  
+- No rejected rows or load errors  
+- All columns correctly inferred  
+- All datasets available in the `ANALYTICS` schema  
+
+These checks confirm that the ingestion pipeline is reliable and ready for the STAGING layer.
+
+---
+
+## 🔗 Next Steps
+
+With ingestion complete, the next phase of the pipeline is:
+
+### **➡️ Data Preparation & Standardization (STAGING Layer)**  
+This includes:
+
+- Cleaning and standardizing all datasets  
+- Applying consistent formatting rules  
+- Ensuring joinability using `FACILITY_ID`  
+- Preparing analysis‑ready tables for modeling  
+
+---
+
+## 📌 Notes
+
+- This ingestion pipeline is fully reproducible and can be rerun at any time.  
+- No raw data is modified; ingestion only loads data into Snowflake.  
+- This document is part of the project’s end‑to‑end data engineering workflow.  
+
+---
+
+## ✅ Status: Ingestion Complete
+
+All CMS datasets are now successfully ingested into Snowflake and ready for transformation in the STAGING layer.
