@@ -61,7 +61,7 @@ You may now proceed to:
 ---
 
 ## 📁 Related Files
-- **SQL Script:** `/sql/snowflake_data_validation.sql`  
+- **SQL Script:** `/sql/03_snowflake_data_validation.sql`  
 - **Raw Data Folder:** `/data/raw/`  
 - **Cleaned Data Folder (upcoming):** `/data/cleaned/`
 
