@@ -78,7 +78,7 @@ Each table is fully standardized and ready for modeling.
 ## 🧾 Full SQL Script
 
 The complete SQL script used to generate all staging tables is located at:
-/sql/01_snowflake_data_prepation.sql
+/sql/02_snowflake_data_preparation.sql
 
 This script includes:
 
