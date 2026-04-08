@@ -202,24 +202,42 @@ These simulations will be completed after modeling.
 # 📚 7. Project Structure
 
 ├── data/
+
 │   ├── raw/
+
 │   └── processed/
+
 │
+
 ├── sql/
+
 │   ├── 01_cms_snowflake_pipeline.sql
+
 │   ├── 02_snowflake_data_preparation.sql
+
 │   ├── 03_snowflake_data_validation.sql
+
 │   ├── 04_snowflake_data_modeling.sql
+
 │   └── 05_cms_snowflake_feature_engineering.sql
+
 │
+
 ├── r/
+
 │   └── eda_modeling.R
+
 │
 ├── tableau/
+
 │   └── dashboard.twbx
+
 │
+
 ├── docs/
+
 │   └── project_narrative.md (this file)
+
 │
 
 ---
