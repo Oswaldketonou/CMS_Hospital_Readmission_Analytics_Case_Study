@@ -1,189 +1,75 @@
-# 🏥 CMS Hospital Readmission Analytics  
-**SQL • R • Tableau • Healthcare Quality Metrics**
+# 🏥 CMS Hospital Readmission & Quality Analytics Case Study
+**Snowflake SQL • R • Tableau • Healthcare Quality Metrics**
 
-This project analyzes **CMS Hospital Quality** data to understand the key drivers of **hospital readmission performance**.  
-Using SQL for data cleaning, R for predictive modeling, and Tableau for visualization, this case study demonstrates a full end‑to‑end healthcare analytics workflow aligned with real industry practices.
-
----
-
-## 📌 Project Objective  
-Identify which hospital quality factors most influence **readmission rates**, build a predictive model, and deliver actionable insights that support hospital performance improvement.
+This project analyzes U.S. hospital quality and readmission performance using publicly available CMS datasets. It demonstrates a complete analytics engineering workflow: Snowflake for data preparation and feature engineering, R for predictive modeling, and Tableau for visualization and executive storytelling.
 
 ---
 
-## 🗂️ Data Source  
+## 📌 Executive Summary
+Hospital readmissions are a key indicator of care quality and financial performance. CMS publishes hospital‑level quality metrics, but the data is fragmented, inconsistent, and not modeling‑ready.  
+This project solves that by building a **unified, engineered, validated dataset** that supports:
+
+- Predictive modeling  
+- Quality benchmarking  
+- Executive dashboards  
+- Scenario simulation and business impact analysis  
+
+The final dataset is clean, standardized, and ready for downstream analytics.
+
+---
+
+## 🎯 Business Problem
+Hospitals face financial penalties for excessive readmissions under the CMS Hospital Readmissions Reduction Program (HRRP).  
+Understanding **which quality factors drive readmissions** enables:
+
+- Targeted quality improvement  
+- Better resource allocation  
+- Reduced penalties  
+- Improved patient outcomes  
+
+This project identifies those drivers using a structured analytics workflow.
+
+---
+
+## 🗂️ Data Sources
 **Centers for Medicare & Medicaid Services (CMS)**  
 - Hospital Readmissions Reduction Program (HRRP)  
-- Hospital Compare Quality Measures  
-- Patient Experience (HCAHPS) Scores  
+- Mortality Measures  
+- Patient Experience (HCAHPS)  
+- Timely & Effective Care (TEC)  
+- Hospital General Information  
+- Region Mapping  
 
-These datasets are publicly available and widely used in healthcare quality reporting.
-
----
-
-## 🧭 Workflow Overview  
-This project follows a structured, bounded workflow to ensure clarity and avoid scope creep:
-
-1. **SQL Data Cleaning & Feature Engineering**  
-2. **R Modeling & Evaluation**  
-3. **Tableau Dashboard Development**  
-4. **Scenario Simulation & Business Impact Analysis**  
-5. **Case Study Write‑Up**
+All datasets are publicly available and widely used in healthcare quality reporting.
 
 ---
 
-## 🗄️ 1. SQL Data Cleaning & Feature Engineering  
-All data preparation was performed in SQL to ensure reproducibility and scalability.
+## 🏗️ Architecture Overview
+### **Snowflake → R → Tableau**
 
-### Key Steps  
-- Standardized column names  
-- Converted numeric fields  
-- Filtered to hospitals with complete readmission data  
-- Removed irrelevant measures  
-- Handled missing values  
+#### **Snowflake**
+- Ingest raw CMS files  
+- Clean and standardize fields  
+- Validate data integrity  
+- Engineer quality metrics  
+- Produce unified dataset:  
+  `CMS_CLEAN_HOSPITAL_QUALITY_FINAL`
 
-### Engineered Features  
-- `readmission_index`  
-- `mortality_index`  
-- `patient_experience_score`  
-- `hospital_size_category`  
-- `state_region`  
+#### **R (Next Phase)**
+- Exploratory data analysis  
+- Predictive modeling  
+- Feature importance  
 
-The cleaned dataset was exported as:  
-**`cms_clean_hospital_quality`**
-
----
-
-## 🤖 2. Predictive Modeling in R  
-A single predictive model was built to maintain focus and interpretability.
-
-### Target Variable  
-- **Readmission Rate** or  
-- **Excess Readmission Ratio (ERR)**
-
-### Model Type  
-- **Linear Regression** (interpretable)  
-or  
-- **Random Forest** (performance‑oriented)
+#### **Tableau (Next Phase)**
+- Executive dashboard  
+- Regional comparisons  
+- Quality performance insights  
 
 ---
 
-## 📈 3. Model Evaluation (Healthcare‑Aligned)  
-Model performance was evaluated using **six categories** of metrics:
-
-### **1. Error‑Based Metrics**  
-- RMSE  
-- MAE  
-- SMAPE  
-
-### **2. Goodness‑of‑Fit Metrics**  
-- R²  
-- Adjusted R²  
-
-### **3. Healthcare‑Specific Metrics**  
-- Excess Readmission Ratio (ERR)  
-- Mortality Index  
-- HCAHPS Patient Experience Score  
-
-### **4. Residual Diagnostics**  
-- Residual plots  
-- Normality check  
-- Homoscedasticity  
-- Influence points  
-
-### **5. Feature Importance**  
-- Coefficients (linear regression)  
-- Variable importance (random forest)
-
-### **6. Business Impact Simulation**  
-Scenario modeling example:  
-> “If patient experience improves by 10%, predicted readmission rate decreases by X%.”
-
-This section translates analytics into **operational value**.
-
----
-
-## 📊 4. Tableau Dashboard  
-A clean, recruiter‑ready dashboard was built to visualize hospital performance.
-
-### Dashboard Views  
-1. **KPI Header**  
-   - Avg Readmission Rate  
-   - Best/Worst Performing Hospital  
-   - Avg Patient Experience Score  
-
-2. **Hospital Scorecard Table**  
-   - Readmission Rate  
-   - Mortality Index  
-   - Patient Experience Score  
-   - Region  
-
-3. **Geographic Map**  
-   - Readmission Rate by State  
-
-4. **Scatter Plot**  
-   - Patient Experience Score vs Readmission Rate  
-   - Trendline + Insight Annotation  
-
-### Filters  
-- State  
-- Hospital Type  
-- Bed Size Category  
-
----
-
-## 📝 5. Key Insights  
-- Patient experience scores show a strong inverse relationship with readmission rates.  
-- Mortality index and readmission index are correlated, indicating systemic quality issues.  
-- Regional variation suggests opportunities for targeted interventions.  
-
----
-
-## 🚀 6. Scenario Simulation (Business Impact)  
-Using the model, several improvement scenarios were tested:
-
-- A **10% increase** in patient experience score reduces predicted readmissions by **X%**.  
-- Improving mortality index by **0.1** reduces readmission risk by **Y%**.  
-- Hospitals in the lowest quartile could reduce penalties by **Z%** with targeted improvements.
-
----
-
-## 📚 7. Project Structure  
- ├── data/
- 
- │   └── raw_cms_data.csv
- 
- │   └── cms_clean_hospital_quality.csv
- 
- ├── sql/
- 
- │   └── cleaning_and_features.sql
- 
- ├── r/
- 
- │   └── modeling_and_evaluation.R
- 
- ├── tableau/
- 
- │   └── dashboard.twbx
- 
- └── README.md
-
----
-
-## 👤 About the Analyst  
-**Waldo Ketonou**  
-Business & Data Analyst | SQL • R • Tableau  
-Focused on transforming healthcare operations and quality metrics into actionable insights.
-
----
-
-## 🔗 Links  
-- **Tableau Dashboard:** _coming soon_  
-- **Case Study:** _coming soon_  
-- **LinkedIn:** www.linkedin.com/in/oswald-s-ketonou-12834197
-
----
-
-## 📌 Status  
-**In Progress** — SQL cleaning phase underway.
+## 📁 SQL Pipeline (With Descriptions)
+01_cms_snowflake_pipeline.sql └─ Creates database, schema, stages, and file formats for CMS ingestion.
+02_snowflake_data_preparation.sql └─ Loads raw CMS datasets, standardizes fields, cleans identifiers, and prepares base tables.
+03_snowflake_data_validation.sql └─ Performs row count checks, duplicate checks, NULL analysis, and numeric range validation.
+04_snowflake_data_modeling.sql └─ Creates modeling‑ready base tables and prepares unified structures for feature engineering.
+05_cms_snowflake_feature_engineering.sql └─ Builds engineered quality metrics (readmission, mortality, patient experience, TEC).
