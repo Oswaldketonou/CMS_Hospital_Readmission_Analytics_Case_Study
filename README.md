@@ -68,12 +68,23 @@ All datasets are publicly available and widely used in healthcare quality report
 ---
 
 ## 📁 SQL Pipeline (With Descriptions)
-01_cms_snowflake_pipeline.sql : Creates database, schema, stages, and file formats for CMS ingestion.
-02_snowflake_data_preparation.sql : Loads raw CMS datasets, standardizes fields, cleans identifiers, and prepares base tables.
-03_snowflake_data_validation.sql : Performs row count checks, duplicate checks, NULL analysis, and numeric range validation.
-04_snowflake_data_modeling.sql : Creates modeling‑ready base tables and prepares unified structures for feature engineering.
-05_cms_snowflake_feature_engineering.sql : Builds engineered quality metrics (readmission, mortality, patient experience, TEC).
 
+```
+01_cms_snowflake_pipeline.sql  
+    └─ Creates database, schema, stages, and file formats for CMS ingestion.
+
+02_snowflake_data_preparation.sql  
+    └─ Loads raw CMS datasets, standardizes fields, cleans identifiers, and prepares base tables.
+
+03_snowflake_data_validation.sql  
+    └─ Performs row count checks, duplicate checks, NULL analysis, and numeric range validation.
+
+04_snowflake_data_modeling.sql  
+    └─ Creates modeling‑ready base tables and prepares unified structures for feature engineering.
+
+05_cms_snowflake_feature_engineering.sql  
+    └─ Builds engineered quality metrics (readmission, mortality, patient experience, TEC).
+```
 
 This pipeline is **final**, **validated**, and **reproducible**.
 
