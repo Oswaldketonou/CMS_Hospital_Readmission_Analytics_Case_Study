@@ -1,3 +1,4 @@
+{% include analytics.html %}
 # 🏥 CMS Hospital Readmission & Quality Analytics Case Study
 **Snowflake SQL • R • Tableau • Healthcare Quality Metrics**
 
