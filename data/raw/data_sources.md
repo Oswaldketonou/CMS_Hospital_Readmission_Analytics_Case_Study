@@ -1,3 +1,4 @@
+{% include analytics.html %}
 # **CMS Hospital Quality Data Sources**
 Comprehensive reference for all raw datasets used in the CMS Hospital Quality Analytics Project.
 
