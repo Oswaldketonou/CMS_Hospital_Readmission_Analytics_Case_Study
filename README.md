@@ -144,7 +144,45 @@ Download CSV from Snowflake query results.
 ---
 
 ## 📚 Repository Structure
-for later
+```
+cms-hospital-quality/
+│
+├── README.md                     ← Root README (this file)
+│
+├── data/
+│   ├── raw/
+│   └── processed/
+│
+├── sql/
+│   ├── 01_cms_snowflake_pipeline.sql
+│   ├── 02_snowflake_data_preparation.sql
+│   ├── 03_snowflake_data_validation.sql
+│   ├── 04_snowflake_data_modeling.sql
+│   ├── 05_cms_snowflake_feature_engineering.sql
+│   └── readme.md
+│
+├── r/
+│   └── eda_modeling.R
+│
+├── tableau/
+│   └── dashboard.twbx
+│
+├── docs/
+│   ├── project_narrative.md
+│   ├── data_preparation.md
+│   ├── data_validation.md
+│   ├── data_modeling.md
+│   ├── snowflake_pipeline.md
+│   ├── cms_snowflake_feature_engineering.md
+│   ├── data_dictionary.md
+│   ├── methodology.md
+│   └── project_notes.md
+│
+└── visuals/
+    ├── architecture.png
+    ├── dashboard_preview.png
+    └── feature_importance.png
+```
 
 ---
 
