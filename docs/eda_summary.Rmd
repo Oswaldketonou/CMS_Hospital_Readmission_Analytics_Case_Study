@@ -1,0 +1,134 @@
+---
+title: "Exploratory Data Analysis (EDA)"
+subtitle: "CMS Hospital Quality — Readmission Modeling Project"
+Author : Waldo Ketonou
+output: html_document
+---
+
+# Overview
+
+This EDA follows the project narrative and focuses on understanding:
+
+- The target variable (**readmission_index**, ERR proxy)  
+- The three engineered CMS quality domains  
+- Their relationships with readmission performance  
+- Regional variation across U.S. Census regions  
+
+All plots referenced below are saved in:
+visuals/r_plots/eda/
+
+The full reproducible code is located in:
+r/01_healthcare_aligned_eda.R
+
+---
+
+# 1. Target Variable: Readmission Index (ERR Proxy)
+
+## 1.1 Missingness
+
+CMS only reports ERR for hospitals with sufficient qualifying cases.  
+As expected, a large portion of hospitals do not have ERR values.
+
+**Key insight:**  
+Missingness is **domain‑driven**, not a data quality issue.
+
+## 1.2 Distribution
+
+```{r echo=FALSE, out.width="70%"}
+knitr::include_graphics("visuals/r_plots/eda/readmission_index_hist.png")
+```
+• 	Distribution centered at 0.999, matching CMS national patterns
+• 	Tight spread (SD ≈ 0.058)
+• 	Suitable for linear modeling
+##  Outlier Check
+```{r}
+knitr::include_graphics("visuals/r_plots/eda/readmission_index_boxplot.png")
+```
+• 	Mild outliers represent real hospitals
+• 	No structural issues
+## 1.4 Hospitals With vs Without ERR
+• 	Has ERR: 2,326
+• 	Missing ERR: 3,100
+Only hospitals with ERR will be used for modeling.
+## 2. Quality Domain Exploration
+The project uses three engineered CMS quality domains:
+• 	mortality_index
+• 	patient_experience_score (HCAHPS)
+• 	timely_effective_care_score (TEC)
+Each domain was evaluated for missingness, distribution, and interpretability.
+## 2.1 Mortality Index
+```{r}
+knitr::include_graphics("visuals/r_plots/eda/mortality_index_hist.png")
+```
+• 	Moderate missingness
+• 	Stable distribution
+• 	Known positive association with readmissions
+## 2.2 Patient Experience (HCAHPS)
+```{r}
+knitr::include_graphics("visuals/r_plots/eda/patient_experience_hist.png")
+```
+- Wide variation
+- Reflects operational performance differences
+
+## 3. Relationship Analysis
+This section answers the narrative’s core question:
+Which quality factors most influence hospital readmission performance?
+
+Scatterplots with linear trendlines were used to evaluate relationships.
+
+## 3.1 Mortality Index → Readmission Index
+```{r}
+knitr::include_graphics("visuals/r_plots/eda/mortality_vs_readmission.png")
+```
+- Positive association
+- Higher mortality correlates with higher readmissions
+
+## 3.2 Patient Experience → Readmission Index
+```{r}
+knitr::include_graphics("visuals/r_plots/eda/patient_experience_vs_readmission.png")
+```
+- Strong negative association
+- Better patient experience correlates with lower readmissions
+
+## 3.3 TEC Score → Readmission Index
+```{r}
+knitr::include_graphics("visuals/r_plots/eda/tec_vs_readmission.png")
+```
+- Weak but present negative association
+
+## 4. Regional Variation
+Regions were assigned using U.S. Census definitions.
+Regional variation supports the narrative’s claim that improvement opportunities differ geographically.
+
+## 4.1 Readmission Index by Region
+```{r}
+knitr::include_graphics("visuals/r_plots/eda/readmission_by_region.png")
+```
+- The South shows the highest readmission levels
+
+## 4.2 Mortality Index by Region
+```{r}
+knitr::include_graphics("visuals/r_plots/eda/mortality_by_region.png")
+```
+- Mortality is highest in the South and Midwest
+
+## 4.3 Patient Experience by Region
+```{r}
+knitr::include_graphics("visuals/r_plots/eda/patient_experience_by_region.png")
+```
+- The Northeast shows the strongest patient experience scores
+
+## 4.4 TEC Score by Region
+```{r}
+knitr::include_graphics("visuals/r_plots/eda/tec_by_region.png")
+```
+- TEC varies widely across all regions
+
+Summary
+The EDA confirms:
+- The dataset is clean and modeling‑ready
+- Missingness patterns are expected and domain‑consistent
+- Quality domains show meaningful variation
+- Relationships with readmission are strong and interpretable
+- Regional differences highlight targeted improvement opportunities
+This completes Step 3 and prepares the project for Step 4: Modeling Dataset Construction.
