@@ -56,8 +56,10 @@ These rankings provide a quick, interpretable view of model performance.
 
 Two bar charts are generated and saved to:
 visuals/model_evaluation/
-├── model_rmse_comparison.png
-└── model_mae_comparison.png
+
+            ├── model_rmse_comparison.png
+                     
+            └── model_mae_comparison.png
 
 Visuals include:
 
@@ -98,14 +100,6 @@ This documentation corresponds to:
 
 and is part of the unified modeling pipeline:
 
-1. 01_setup_and_load.R  
-2. 02_factor_handling.R  
-3. 03_train_test_split.R  
-4. 03_cms_baseline_model.R  
-5. 04_cms_linear_model.R  
-6. 04_cms_random_forest.R  
-7. **05_cms_model_evaluation.R**  
-8. 06_scenario_simulation.R  
 
 ---
 
