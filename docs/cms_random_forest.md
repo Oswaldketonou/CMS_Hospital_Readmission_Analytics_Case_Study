@@ -59,4 +59,33 @@ These values outperform both the baseline model and the linear regression model,
 
 ## 6.4 — Variable Importance  
 Variable importance was extracted from the fitted model and ranked in descending order. The top 20 features were visualized and exported to:
+visuals/random_forest/rf_variable_importance.png
+
+High-importance predictors typically include:
+
+- mortality_index  
+- patient_experience_score  
+- timely_effective_care_score  
+- state_region  
+- hospital_ownership  
+
+These results align with CMS research indicating that both quality-of-care metrics and structural characteristics influence readmission outcomes.
+
+---
+
+## 6.5 — Outputs for Step 7  
+The following objects are produced for downstream evaluation:
+
+- **rf_fit** — trained Random Forest model  
+- **rf_preds** — predictions on the test set  
+- **rf_importance** — ranked variable importance table  
+- **rf_results** — RMSE and MAE packaged for model comparison  
+
+These outputs feed directly into Step 7, where all models are evaluated side-by-side.
+
+---
+
+## Summary  
+The Random Forest model provides strong predictive performance and valuable insights into feature importance. Its ability to model non-linear relationships makes it a critical component of the overall modeling strategy, complementing the interpretability of the linear regression model and supporting the scenario simulation work in Step 9.
+
 
