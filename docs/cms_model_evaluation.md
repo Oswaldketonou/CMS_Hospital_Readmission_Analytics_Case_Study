@@ -92,19 +92,19 @@ This file is used directly in the Tableau dashboard for:
 The evaluation workflow ensures that all models are assessed consistently using the same metrics, ranking logic, and export structure.
 
 ---
-
-## 7. Script Reference
-
-This documentation corresponds to:
-/R/05_cms_model_evaluation.R
-
 and is part of the unified modeling pipeline:
 
+1. 01_healthcare_aligned_eda.R  
+2. 02_modeling_dataset.R  
+3. 03_cms_linear_model.R  
+4. 04_cms_random_forest.R  
+5. **05_cms_model_evaluation.R**  
 
 ---
 
 **Author:** Waldo Ketonou  
-**Project:** CMS Hospital Readmission Analytics  
+**Project:** CMS Hospital Readmission Analytics
+
 
 
 
