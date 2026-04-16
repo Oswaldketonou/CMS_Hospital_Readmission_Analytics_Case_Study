@@ -1,5 +1,4 @@
 # CMS Hospital Readmission Analytics 
-## Author : Waldo Ketonou
 ## Step 6 — Random Forest Modeling (ranger)
 
 ### Overview  
